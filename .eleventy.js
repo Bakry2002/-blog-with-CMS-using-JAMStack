@@ -10,6 +10,7 @@ module.exports = function(eleventyConfig) {
     // take from src file and pass through to publicc folder
     eleventyConfig.addPassthroughCopy('./src/style.css'); 
     eleventyConfig.addPassthroughCopy('./src/assets'); 
+    eleventyConfig.addPassthroughCopy('./src/Admin'); 
 
     // date format function
     eleventyConfig.addFilter("postDate", (dateObj) => {
