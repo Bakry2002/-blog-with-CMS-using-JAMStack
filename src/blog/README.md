@@ -1,0 +1,1 @@
+anything on json file will ba applyed to all the blogs 

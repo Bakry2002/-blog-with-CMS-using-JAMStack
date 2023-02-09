@@ -1,3 +1,8 @@
+// date library
+const { DateTime } = require('luxon'); 
+
+
+
 // config file for Eleventy (11ty)
 module.exports = function(eleventyConfig) {
 
@@ -6,6 +11,14 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy('./src/style.css'); 
     eleventyConfig.addPassthroughCopy('./src/assets'); 
 
+    // date format function
+    eleventyConfig.addFilter("postDate", (dateObj) => {
+        return DateTime.fromJSDate(dateObj).toLocaleString(DateTime.DATE_MED); 
+    });
+
+    // update year dynamically
+    eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
+
     
     // location of source files (where im working from)
     // and the location of the public facing files 
@@ -13,8 +26,13 @@ module.exports = function(eleventyConfig) {
     return {
         dir: {
             input: "src", // input files 
+            includes: '_includes',
             output: "public" // output files by default => "_site"
-        }
+        },
+        templateFormats: ['md', 'njk', 'html'], 
+        markdownTemplateEngine: 'njk', 
+        htmlTemplateEngine: 'njk',
+        dataTemplateEngine: 'njk',  
     }
 
     
